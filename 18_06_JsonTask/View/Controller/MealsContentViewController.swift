@@ -21,7 +21,9 @@ class MealsContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        setData()
+        Task {
+            await setData()
+        }
     }
 }
 // MARK: - Setting UI
@@ -36,7 +38,7 @@ extension MealsContentViewController {
     }
 }
 extension MealsContentViewController {
-    func setData() {
+    func setData() async {
         titleLabel.text = meals?.strMeal
         categoryLabel.text = meals?.strCategory
         areaLabel.text = meals?.strArea
@@ -48,17 +50,16 @@ extension MealsContentViewController {
         instructionsScrollView.contentSize = CGSize(width: instructionsScrollView.frame.width, height: instructionsLabel.frame.height)
         //decoding image data
         if let imageUrl = meals?.strMealThumb {
-            ApiManager.sharedInstance.getApiData(url: imageUrl) { data in
-                if let data = data {
-                    DispatchQueue.main.async {
-                        self.mealPicImageView.image = UIImage(data: data)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.mealPicImageView.image = UIImage(systemName: "photo")
-                    }
+            do {
+                let imageData = try await ApiManager.sharedInstance.getApiData(url: imageUrl)
+                if let imageData = imageData {
+                    mealPicImageView.image = UIImage(data: imageData)
                 }
+            } catch {
+                print("error getting image data")
             }
+        } else {
+            mealPicImageView.image = UIImage(systemName: "photo")
         }
     }
 }

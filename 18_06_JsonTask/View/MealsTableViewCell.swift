@@ -22,18 +22,21 @@ class MealsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(setter: Meals) {
+    func setData(setter: Meals) async {
         mealsTitleLabel.text = setter.strMeal
         mealsInstructionsLabel.text = setter.strInstructions
         //decoding image data
         if let imageUrl = setter.strMealThumb {
-            ApiManager.sharedInstance.getApiData(url: imageUrl) { data in
-                if let data  = data {
-                    DispatchQueue.main.async {
-                        self.mealsImageView.image = UIImage(data: data)
-                    }
+            do {
+                let imageData = try await ApiManager.sharedInstance.getApiData(url: imageUrl)
+                if let imageData = imageData {
+                    mealsImageView.image = UIImage(data: imageData)
                 }
+            } catch {
+                print("error getting image data")
             }
+        } else {
+            mealsImageView.image = UIImage(systemName: "photo")
         }
     }
 }

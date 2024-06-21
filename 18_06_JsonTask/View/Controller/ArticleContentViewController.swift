@@ -20,8 +20,10 @@ class ArticleContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setData()
         setUI()
+        Task {
+            await setData()
+        }
     }
 }
 // MARK: - Setting UI
@@ -37,7 +39,7 @@ extension ArticleContentViewController {
 }
 // MARK: - Setting Data
 extension ArticleContentViewController {
-    func setData() {
+    func setData() async {
         articleTitleLabel.text = articles?.title
         authorLabel.text = articles?.author
         dateLabel.text = articles?.publishedAt
@@ -45,17 +47,16 @@ extension ArticleContentViewController {
         sourceLabel.text = articles?.source?.name
         //decoding image data
         if let imageUrl = articles?.urlToImage {
-            ApiManager.sharedInstance.getApiData(url: imageUrl) { data in
-                if let data = data {
-                    DispatchQueue.main.async {
-                        self.articleImageView.image = UIImage(data: data)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.articleImageView.image = UIImage(systemName: "photo")
-                    }
+            do {
+                let imageData = try await ApiManager.sharedInstance.getApiData(url: imageUrl)
+                if let imageData = imageData {
+                    articleImageView.image = UIImage(data: imageData)
                 }
+            } catch {
+                print("could not decode image data")
             }
+        } else {
+            articleImageView.image = UIImage(systemName: "photo")
         }
     }
 }

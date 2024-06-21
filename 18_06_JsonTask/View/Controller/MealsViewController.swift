@@ -17,7 +17,9 @@ class MealsViewController: UIViewController {
         super.viewDidLoad()
         mealsTableView.dataSource = self
         mealsTableView.delegate = self
-        fetchData()
+        Task {
+            await fetchData()
+        }
     }
 }
 
@@ -29,7 +31,9 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MealsTableViewCell", for: indexPath) as! MealsTableViewCell
         if let setter = mealsViewModelObj.meals?[indexPath.row] {
-            cell.setData(setter: setter)
+            Task {
+                await cell.setData(setter: setter)
+            }
         }
         return cell
     }
@@ -43,11 +47,12 @@ extension MealsViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension MealsViewController {
-    func fetchData() {
-        mealsViewModelObj.fetchData(url: "https://www.themealdb.com/api/json/v1/1/search.php?f=s") {
-            DispatchQueue.main.async {
-                self.mealsTableView.reloadData()
-            }
+    func fetchData() async {
+        do {
+            try await mealsViewModelObj.fetchData(url: "https://www.themealdb.com/api/json/v1/1/search.php?f=s")
+            mealsTableView.reloadData()
+        } catch {
+            print("error fetching data")
         }
     }
 }
