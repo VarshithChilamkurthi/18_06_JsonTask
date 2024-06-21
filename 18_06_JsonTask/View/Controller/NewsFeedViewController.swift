@@ -44,6 +44,7 @@ extension NewsFeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let acvc = sb.instantiateViewController(withIdentifier: "ArticleContentViewController") as! ArticleContentViewController
+        acvc.articles = newsFeedViewModelObj.article?[indexPath.row]
         navigationController?.pushViewController(acvc, animated: true)
         newsFeedTableView.deselectRow(at: indexPath, animated: true)
     }
