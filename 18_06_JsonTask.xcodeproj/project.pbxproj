@@ -31,6 +31,11 @@
 		D2060B2E2C2357F000B9E3A7 /* TranscodingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2060B2D2C2357F000B9E3A7 /* TranscodingDataViewController.swift */; };
 		D2060B302C2358C900B9E3A7 /* TranscodingDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2060B2F2C2358C900B9E3A7 /* TranscodingDataTableViewCell.swift */; };
 		D2060B322C2370B300B9E3A7 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2060B312C2370B300B9E3A7 /* NewsFeedViewController.swift */; };
+		D27E872D2C25410B0096998F /* MealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E872C2C25410B0096998F /* MealsViewController.swift */; };
+		D27E872F2C2541AD0096998F /* MealsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E872E2C2541AD0096998F /* MealsTableViewCell.swift */; };
+		D27E87312C2542870096998F /* MealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E87302C2542870096998F /* MealsViewModel.swift */; };
+		D27E87332C2542C40096998F /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E87322C2542C40096998F /* MealsModel.swift */; };
+		D27E87352C255B640096998F /* MealsContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27E87342C255B640096998F /* MealsContentViewController.swift */; };
 		D2D05DAF2C23777400BA64E5 /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D05DAE2C23777400BA64E5 /* NewsFeedTableViewCell.swift */; };
 		D2D05DB12C23791A00BA64E5 /* NewsFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D05DB02C23791A00BA64E5 /* NewsFeedModel.swift */; };
 		D2D05DB32C2379CD00BA64E5 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D05DB22C2379CD00BA64E5 /* NewsViewModel.swift */; };
@@ -83,6 +88,11 @@
 		D2060B2D2C2357F000B9E3A7 /* TranscodingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscodingDataViewController.swift; sourceTree = "<group>"; };
 		D2060B2F2C2358C900B9E3A7 /* TranscodingDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscodingDataTableViewCell.swift; sourceTree = "<group>"; };
 		D2060B312C2370B300B9E3A7 /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewController.swift; sourceTree = "<group>"; };
+		D27E872C2C25410B0096998F /* MealsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewController.swift; sourceTree = "<group>"; };
+		D27E872E2C2541AD0096998F /* MealsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsTableViewCell.swift; sourceTree = "<group>"; };
+		D27E87302C2542870096998F /* MealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewModel.swift; sourceTree = "<group>"; };
+		D27E87322C2542C40096998F /* MealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
+		D27E87342C255B640096998F /* MealsContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsContentViewController.swift; sourceTree = "<group>"; };
 		D2D05DAE2C23777400BA64E5 /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		D2D05DB02C23791A00BA64E5 /* NewsFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedModel.swift; sourceTree = "<group>"; };
 		D2D05DB22C2379CD00BA64E5 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
@@ -176,6 +186,7 @@
 				D2060B212C23223A00B9E3A7 /* UserModel.swift */,
 				D2060B252C233DAD00B9E3A7 /* VideoModel.swift */,
 				D2D05DB02C23791A00BA64E5 /* NewsFeedModel.swift */,
+				D27E87322C2542C40096998F /* MealsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,6 +197,7 @@
 				D2060B2B2C23509100B9E3A7 /* VideoTableViewCell.swift */,
 				D2060B2F2C2358C900B9E3A7 /* TranscodingDataTableViewCell.swift */,
 				D2D05DAE2C23777400BA64E5 /* NewsFeedTableViewCell.swift */,
+				D27E872E2C2541AD0096998F /* MealsTableViewCell.swift */,
 				D2060B102C21D35D00B9E3A7 /* Controller */,
 			);
 			path = View;
@@ -198,6 +210,7 @@
 				D2060B232C232AE900B9E3A7 /* UserViewModel.swift */,
 				D2060B272C23402200B9E3A7 /* VideoViewModel.swift */,
 				D2D05DB22C2379CD00BA64E5 /* NewsViewModel.swift */,
+				D27E87302C2542870096998F /* MealsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -212,6 +225,8 @@
 				D2060B2D2C2357F000B9E3A7 /* TranscodingDataViewController.swift */,
 				D2060B312C2370B300B9E3A7 /* NewsFeedViewController.swift */,
 				D2D05DB42C23DDD100BA64E5 /* ArticleContentViewController.swift */,
+				D27E872C2C25410B0096998F /* MealsViewController.swift */,
+				D27E87342C255B640096998F /* MealsContentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -371,7 +386,9 @@
 				D2D05DB12C23791A00BA64E5 /* NewsFeedModel.swift in Sources */,
 				D2060ADE2C21D2FA00B9E3A7 /* AppDelegate.swift in Sources */,
 				D2D05DAF2C23777400BA64E5 /* NewsFeedTableViewCell.swift in Sources */,
+				D27E872F2C2541AD0096998F /* MealsTableViewCell.swift in Sources */,
 				D2060B152C21E41400B9E3A7 /* ApiManager.swift in Sources */,
+				D27E87332C2542C40096998F /* MealsModel.swift in Sources */,
 				D2060AE02C21D2FA00B9E3A7 /* SceneDelegate.swift in Sources */,
 				D2060B282C23402200B9E3A7 /* VideoViewModel.swift in Sources */,
 				D2D05DB52C23DDD100BA64E5 /* ArticleContentViewController.swift in Sources */,
@@ -380,10 +397,13 @@
 				D2060B122C21D72000B9E3A7 /* UsersModel.swift in Sources */,
 				D2060B322C2370B300B9E3A7 /* NewsFeedViewController.swift in Sources */,
 				D2060B2E2C2357F000B9E3A7 /* TranscodingDataViewController.swift in Sources */,
+				D27E87352C255B640096998F /* MealsContentViewController.swift in Sources */,
+				D27E872D2C25410B0096998F /* MealsViewController.swift in Sources */,
 				D2060B222C23223A00B9E3A7 /* UserModel.swift in Sources */,
 				D2060B302C2358C900B9E3A7 /* TranscodingDataTableViewCell.swift in Sources */,
 				D2060B2A2C23413B00B9E3A7 /* Q3ViewController.swift in Sources */,
 				D2060B1C2C21F93600B9E3A7 /* Constants.swift in Sources */,
+				D27E87312C2542870096998F /* MealsViewModel.swift in Sources */,
 				D2060B2C2C23509100B9E3A7 /* VideoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
