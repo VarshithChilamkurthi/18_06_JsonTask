@@ -10,12 +10,9 @@ import Foundation
 class UsersViewModel {
     var users: [Users] = []
     
-    func fetchData(url: String, completion: @escaping () -> ()) {
-        ApiManager.sharedInstance.getApiData(url: url) { data in
-            if let data = data {
-                self.users = self.decodeData(data: data)
-                completion()
-            }
+    func fetchData(url: String) async throws -> () {
+        if let data = try await ApiManager.sharedInstance.getApiData(url: url) {
+            users = decodeData(data: data)
         }
     }
     

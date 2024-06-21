@@ -24,7 +24,7 @@ class NewsFeedTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(setter: Article) {
+    func setData(setter: Article) async throws -> () {
         titleLabel.text = setter.title
         if let author = setter.author {
             authorLabel.text = author
@@ -36,16 +36,9 @@ class NewsFeedTableViewCell: UITableViewCell {
         }
         //converting image url to data with apimanager
         if let imageUrl = setter.urlToImage {
-            ApiManager.sharedInstance.getApiData(url: imageUrl) { data in
-                if let imageData = data {
-                    DispatchQueue.main.async {
-                        self.articleImageView.image = UIImage(data: imageData)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.articleImageView.image = UIImage(systemName: "photo")
-                    }
-                }
+            let imageData = try await ApiManager.sharedInstance.getApiData(url: imageUrl)
+            if let imageData = imageData {
+                articleImageView.image = UIImage(data: imageData)
             }
         } else {
             articleImageView.image = UIImage(systemName: "photo")

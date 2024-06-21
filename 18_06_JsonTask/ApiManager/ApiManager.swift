@@ -11,15 +11,10 @@ class ApiManager {
     static let sharedInstance = ApiManager()
     private init() {}
     
-    func getApiData(url: String, completion: @escaping (Data?) -> ()) {
+    func getApiData(url: String) async throws -> Data? {
         let url = URL(string: url)
-        guard let url = url else { return }
-        URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            if error != nil {
-                print("error")
-                return
-            }
-            completion(data)
-        }.resume()
+        guard let url = url else { return nil }
+        let (data, _) = try await URLSession.shared.data(for: URLRequest(url: url))
+        return data
     }
 }

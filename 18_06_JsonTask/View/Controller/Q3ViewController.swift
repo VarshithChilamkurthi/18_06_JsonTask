@@ -18,7 +18,9 @@ class Q3ViewController: UIViewController {
         self.title = "Video Data"
         videoTableView.dataSource = self
         videoTableView.delegate = self
-        fetchData()
+        Task {
+            await fetchData()
+        }
     }
 }
 // MARK: - Table view set up
@@ -46,11 +48,12 @@ extension Q3ViewController: UITableViewDataSource, UITableViewDelegate {
 }
 // MARK: - Api call
 extension Q3ViewController {
-    func fetchData() {
-        videoViewModelObj.fetchData(url: "https://gist.githubusercontent.com/dbackeus/484315/raw/dfeb530f9619bb74af5d537280a0b3b305410d01/videos.json") {
-            DispatchQueue.main.async {
-                self.videoTableView.reloadData()
-            }
+    func fetchData() async {
+        do {
+            try await videoViewModelObj.fetchData(url: "https://gist.githubusercontent.com/dbackeus/484315/raw/dfeb530f9619bb74af5d537280a0b3b305410d01/videos.json")
+            videoTableView.reloadData()
+        } catch {
+            print("error fetching data")
         }
     }
 }

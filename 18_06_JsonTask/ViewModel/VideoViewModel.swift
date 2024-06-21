@@ -10,12 +10,9 @@ import Foundation
 class VideoViewModel {
     var video: [Video]?
     
-    func fetchData(url: String, completion: @escaping () -> ()) {
-        ApiManager.sharedInstance.getApiData(url: url) { data in
-            if let data = data {
-                self.video = self.decodeData(data: data)
-                completion()
-            }
+    func fetchData(url: String) async throws -> () {
+        if let data = try await ApiManager.sharedInstance.getApiData(url: url) {
+            video = decodeData(data: data)
         }
     }
     

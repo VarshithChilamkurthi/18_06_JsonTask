@@ -20,22 +20,25 @@ class Q2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "User Data"
-        fetchData()
+        Task {
+            await fetchData()
+        }
     }
 }
 // MARK: - Api call and setting data
 extension Q2ViewController {
-    func fetchData() {
-        userViewModelObj.fetchData(url: "https://swapi.py4e.com/api/people/1") {
-            DispatchQueue.main.async {
-                if let obj = self.userViewModelObj.user {
-                    self.nameLabel.text = "Name: \(obj.name)"
-                    self.heightLabel.text = "Height: \(obj.height)"
-                    self.birthYearLabel.text = "Birth Year: \(obj.birth_year)"
-                    self.genderLabel.text = "Gender: \(obj.gender)"
-                    self.createdLabel.text = "Created at: \(obj.created)"
-                }
+    func fetchData() async {
+        do {
+            try await userViewModelObj.fetchData(url: "https://swapi.py4e.com/api/people/1")
+            if let obj = userViewModelObj.user {
+                nameLabel.text = "Name: \(obj.name)"
+                heightLabel.text = "Height: \(obj.height)"
+                birthYearLabel.text = "Birth Year: \(obj.birth_year)"
+                genderLabel.text = "Gender: \(obj.gender)"
+                createdLabel.text = "Created at: \(obj.created)"
             }
+        } catch {
+            print("error fetching data")
         }
     }
 }

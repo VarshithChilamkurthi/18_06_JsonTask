@@ -18,7 +18,9 @@ class Q1ViewController: UIViewController {
         usersListTableView.dataSource = self
         usersListTableView.delegate = self
         self.title = "Users List"
-        fetchData()
+        Task {
+            await fetchData()
+        }
     }
 }
 // MARK: - TableView setup
@@ -44,11 +46,12 @@ extension Q1ViewController: UITableViewDataSource, UITableViewDelegate {
 }
 // MARK: - Network call
 extension Q1ViewController {
-    func fetchData() {
-        usersViewModelObj.fetchData(url: "https://jsonplaceholder.typicode.com/users") {
-            DispatchQueue.main.async {
-                self.usersListTableView.reloadData()
-            }
+    func fetchData() async {
+        do {
+            try await usersViewModelObj.fetchData(url: "https://jsonplaceholder.typicode.com/users")
+            usersListTableView.reloadData()
+        } catch {
+            print("error fetching data")
         }
     }
 }
